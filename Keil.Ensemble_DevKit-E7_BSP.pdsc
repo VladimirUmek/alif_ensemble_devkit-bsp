@@ -54,19 +54,6 @@
         <file category="source" name="CMSIS/Driver/vio_DevKit-E7.c"/>
       </files>
     </component>
-
-    <!-- Temporarily provide CMSIS GPIO driver for Alif Semiconductor Ensembly family -->
-    <component Cclass="CMSIS Driver" Cgroup="GPIO" Cversion="1.0.0" Capiversion="1.0.0" condition="DevKit-E7">
-      <description>GPIO driver implementation for Ensemble family</description>
-      <RTE_Components_h>
-        #define RTE_GPIO
-        #define RTE_GPIO_ENSEMBLE
-      </RTE_Components_h>
-      <files>
-        <file category="source" name="CMSIS/Driver/GPIO_Ensemble.c"/>
-        <file category="header" name="CMSIS/Driver/GPIO_Ensemble.h"/>
-      </files>
-    </component>
   </components>
 
   <csolution>
