@@ -24,7 +24,6 @@
 #endif
 
 #include "conductor_board_config.h"
-#include "retarget_stdout.h"
 #include "main.h"
 
 #ifdef CMSIS_shield_header
@@ -38,8 +37,8 @@ int main (void) {
   /* Apply pin configuration */
   conductor_pins_config();
 
-  /* Initialize STDOUT */
-  stdout_init();
+  /* Initialize STDIO */
+  stdio_init();
 
   /* Initialize Virtual I/O */
   vioInit();

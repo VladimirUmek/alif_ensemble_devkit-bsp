@@ -338,9 +338,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>CMSIS_target_header=\"DevKit-E7.h\"</Define>
               <Undefine></Undefine>
-              <IncludePath>./ConductorTool</IncludePath>
+              <IncludePath>./ConductorTool;./</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,6 +409,16 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>retarget_stdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\retarget_stdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>DevKit-E7.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DevKit-E7.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -441,7 +451,7 @@
       <filter>
         <targetInfos/>
       </filter>
-      <package name="CMSIS-Compiler" vendor="ARM" version="1.0.0">
+      <package name="CMSIS-Compiler" vendor="ARM" version="2.1.0">
         <targetInfos>
           <targetInfo name="DevKit-E7" versionMatchMode="fixed"/>
         </targetInfos>
@@ -490,6 +500,24 @@
           <targetInfo name="DevKit-E7"/>
         </targetInfos>
       </api>
+      <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDERR" condition="CortexDevice" exclusive="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </api>
+      <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDIN" condition="CortexDevice" exclusive="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </api>
+      <api Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" condition="CortexDevice" exclusive="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </api>
       <api Capiversion="1.0.1" Cclass="CMSIS" Cgroup="OS Tick" exclusive="1">
         <package name="CMSIS" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="6.1.0"/>
         <targetInfos>
@@ -504,8 +532,26 @@
       </api>
     </apis>
     <components>
-      <component Cclass="CMSIS-Compiler" Cgroup="I/O" Csub="STDOUT" Cvariant="User" Cvendor="ARM" Cversion="1.0.0" condition="CortexDevice">
-        <package name="CMSIS-Compiler" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="ARM" version="1.0.0"/>
+      <component Cclass="CMSIS-Compiler" Cgroup="CORE" Cvendor="ARM" Cversion="1.1.0" condition="ARMCC CortexDevice">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDERR" Csub="Custom" Cvendor="ARM" Cversion="1.1.0" condition="CORE" custom="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDIN" Csub="Custom" Cvendor="ARM" Cversion="1.1.0" condition="CORE" custom="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </component>
+      <component Capiversion="1.1.0" Cclass="CMSIS-Compiler" Cgroup="STDOUT" Csub="Custom" Cvendor="ARM" Cversion="1.1.0" condition="CORE" custom="1">
+        <package name="CMSIS-Compiler" schemaVersion="1.7.36" url="https://www.keil.com/pack/" vendor="ARM" version="2.1.0"/>
         <targetInfos>
           <targetInfo name="DevKit-E7"/>
         </targetInfos>
@@ -541,6 +587,18 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Conductor Tool support" Cvendor="AlifSemiconductor" Cversion="1.1.0" condition="Ensemble CMSIS_Driver">
+        <package name="Ensemble" schemaVersion="1.4" url="https://github.com/alifsemi/alif_ensemble-cmsis-dfp/raw/main/" vendor="AlifSemiconductor" version="1.2.1"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Retarget IO" Csub="STDERR" Cvendor="AlifSemiconductor" Cversion="1.1.0" condition="Retarget IO STDERR">
+        <package name="Ensemble" schemaVersion="1.4" url="https://github.com/alifsemi/alif_ensemble-cmsis-dfp/raw/main/" vendor="AlifSemiconductor" version="1.2.1"/>
+        <targetInfos>
+          <targetInfo name="DevKit-E7"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="Retarget IO" Csub="STDIN" Cvendor="AlifSemiconductor" Cversion="1.1.0" condition="Retarget IO STDIN">
         <package name="Ensemble" schemaVersion="1.4" url="https://github.com/alifsemi/alif_ensemble-cmsis-dfp/raw/main/" vendor="AlifSemiconductor" version="1.2.1"/>
         <targetInfos>
           <targetInfo name="DevKit-E7"/>

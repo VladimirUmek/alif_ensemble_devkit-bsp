@@ -65,14 +65,10 @@ layer:
     - component: CMSIS Driver:USART:Custom
     - component: CMSIS Driver:VIO:Board&DevKit-E7
 
-    - component: CMSIS-Compiler:I/O:STDERR&User
-    - component: CMSIS-Compiler:I/O:STDIN&User
-    - component: CMSIS-Compiler:I/O:STDOUT&User
-
-    #- component: ARM::CMSIS-Compiler:CORE
-    #- component: ARM::CMSIS-Compiler:STDERR:Custom
-    #- component: ARM::CMSIS-Compiler:STDIN:Custom
-    #- component: ARM::CMSIS-Compiler:STDOUT:Custom
+    - component: ARM::CMSIS-Compiler:CORE
+    - component: ARM::CMSIS-Compiler:STDERR:Custom
+    - component: ARM::CMSIS-Compiler:STDIN:Custom
+    - component: ARM::CMSIS-Compiler:STDOUT:Custom
 
   groups:
     - group: Board
@@ -80,6 +76,7 @@ layer:
         - file: ./main.c
         - file: ./main.h
         - file: ./DevKit-E7.h
+        - file: ./retarget_stdio.c
 
     #- group: Driver
     #  files:
