@@ -53,7 +53,7 @@ vioLED2           | vioSignalOut.2 | RGB LED Blue                               
 #include "Driver_GPIO.h"
 #include "board_defs.h"
 
-#include "GPIO_Ensemble.h"
+#include "Driver_GPIO_Private.h"
 #endif
 
 // VIO input, output definitions

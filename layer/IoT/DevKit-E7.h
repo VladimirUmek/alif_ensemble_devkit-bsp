@@ -19,7 +19,7 @@
 #ifndef DEVKIT_E7_H_
 #define DEVKIT_E7_H_
 
-#include "GPIO_Ensemble.h"
+#include "Driver_GPIO_Private.h"
 #include "Driver_ETH_MAC.h"
 #include "Driver_USART.h"
 
