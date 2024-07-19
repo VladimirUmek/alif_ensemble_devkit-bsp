@@ -1,0 +1,32 @@
+# A solution is a collection of related projects that share same base configuration.
+solution:
+  created-for: CMSIS-Toolbox@2.4.0
+  cdefault:
+
+  # List the packs that define the device and/or board.
+  packs:
+    - pack: AlifSemiconductor::Ensemble
+    - pack: ARM::CMSIS@6.1.0
+    - pack: ARM::CMSIS-RTX@5.9.0
+    - pack: ARM::CMSIS-Compiler@1.0.0
+    - pack: Keil::Ensemble_DevKit-E7_BSP
+
+  # List different hardware targets that are used to deploy the solution.
+  target-types:
+    - type: DevKit-E7
+      board: Alif Semiconductor::DevKit-E7
+      device: Alif Semiconductor::AE722F80F55D5LS:M55_HE
+
+  # List of different build configurations.
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: debug
+
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  # List related projects.
+  projects:
+    - project: Blinky.cproject.yml
