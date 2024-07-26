@@ -35,6 +35,9 @@ layer:
 
   add-path:
     - ./ConductorTool
+    - ./interface/audio/include
+    - ./interface/sensor/include
+    - ./interface/video/include
 
   misc:
     - for-compiler: AC6
@@ -75,11 +78,14 @@ layer:
         - file: ./DevKit-E7.h
         - file: ./retarget_stdio.c
 
-    #- group: Driver
-    #  files:
-    #    - file: ../../../../interface/VSI/include/arm_vsi.h
-    #    - file: ../../../../interface/audio/include/audio_drv.h
-    #    - file: ../../../../interface/VSI/audio/driver/audio_drv.c
+    - group: Driver
+      files:
+        - file: ./interface/sensor/source/sensor_drv.c
+        - file: ./driver/audio/audio_drv.c
+        - file: ./driver/sensor/sensor_config.h
+        - file: ./driver/sensor/sensor_drv_hw.c
+        - file: ./driver/video/video_drv.c
+
     
   linker:
     - script: RTE/Device/AE722F80F55D5LS_M55_HE/M55_HE.sct
