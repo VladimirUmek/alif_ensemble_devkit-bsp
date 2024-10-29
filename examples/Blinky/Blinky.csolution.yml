@@ -1,14 +1,14 @@
 # A solution is a collection of related projects that share same base configuration.
 solution:
-  created-for: CMSIS-Toolbox@2.4.0
+  created-for: CMSIS-Toolbox@2.6.0
   cdefault:
 
   # List the packs that define the device and/or board.
   packs:
-    - pack: AlifSemiconductor::Ensemble
-    - pack: ARM::CMSIS@6.1.0
-    - pack: ARM::CMSIS-RTX@5.9.0
-    - pack: ARM::CMSIS-Compiler@1.0.0
+    - pack: AlifSemiconductor::Ensemble@^1.2.1
+    - pack: ARM::CMSIS@^6.1.0
+    - pack: ARM::CMSIS-RTX@^5.9.0
+    - pack: ARM::CMSIS-Compiler@^2.1.0
     - pack: Keil::Ensemble_DevKit-E7_BSP
 
   # List different hardware targets that are used to deploy the solution.

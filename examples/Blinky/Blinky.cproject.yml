@@ -4,27 +4,28 @@ project:
   processor:
     trustzone: off
 
+  define:
+    - CMSIS_target_header: \"DevKit-E7.h\"
+
   # List components to use for your application.
   # A software component is a re-usable unit that may be configurable.
   components:
-    - component: AlifSemiconductor::Device:Conductor Tool support
-    - component: AlifSemiconductor::Device:Startup&C Startup
+    - component: Device:Conductor Tool support
+    - component: Device:Startup&C Startup
+    - component: Device:Retarget IO:STDOUT
+    - component: Device:SOC Peripherals:PINCONF
 
-    - component: AlifSemiconductor::Device:Retarget IO:STDOUT
+    - component: CMSIS:CORE
 
-    - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
-    - component: AlifSemiconductor::Device:SOC Peripherals:USART
-
-    - component: ARM::CMSIS:CORE
-
-    - component: ARM::CMSIS:OS Tick:SysTick
-    - component: ARM::CMSIS:RTOS2:Keil RTX5&Source
+    - component: CMSIS:OS Tick:SysTick
+    - component: CMSIS:RTOS2:Keil RTX5&Source
 
     - component: CMSIS Driver:GPIO
-    - component: CMSIS Driver:USART:Custom
+    - component: CMSIS Driver:USART
     - component: CMSIS Driver:VIO:Board&DevKit-E7
 
-    - component: CMSIS-Compiler:I/O:STDOUT&User
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDOUT:Custom
 
   add-path:
     - ./ConductorTool
