@@ -57,7 +57,7 @@
   </components>
 
   <csolution>
-    <clayer type="Board" path="layers/IoT" file="Board.clayer.yml" copy-to="Board/DevKit-E7" condition="DevKit-E7"/>
+    <clayer type="Board" path="layers/Default" file="Board.clayer.yml" copy-to="Board/DevKit-E7" condition="DevKit-E7"/>
   </csolution>
 
   <examples>
