@@ -68,5 +68,13 @@
         <environment name="csolution" load="Blinky.csolution.yml"/>
       </project>
     </example>
+
+    <example name="Hello" folder="examples/Hello" doc="README.md">
+      <description>Hello World example</description>
+      <board name="DevKit-E7" vendor="Alif Semiconductor"/>
+      <project>
+        <environment name="uv" load="Hello.uvprojx"/>
+      </project>
+    </example>
   </examples>
 </package>
