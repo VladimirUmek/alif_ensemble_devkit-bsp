@@ -25,12 +25,14 @@
  * Application main thread
  *----------------------------------------------------------------------------*/
 __NO_RETURN void app_main_thread (void *argument) {
+  uint32_t n;
+
   (void)argument;
-  
+
   stdout_init();
 
-  for (;;) {
-    printf("Hello World!\r\n");
+  for (n = 0U; ; n++) {
+    printf("%u: Hello World!\r\n", n);
     osDelay(1000U);
   }
 }
