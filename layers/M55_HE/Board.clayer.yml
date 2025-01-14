@@ -1,6 +1,6 @@
 layer:
   type: Board
-  description: Board setup for IoT with Ethernet interface
+  description: DevKit-E7 board setup using M55_HE
   for-board: Alif Semiconductor::DevKit-E7:Gen 2
   for-device: Alif Semiconductor::AE722F80F55D5LS:M55_HE
   processor:
@@ -27,11 +27,11 @@ layer:
     - CMSIS_target_header: \"DevKit-E7.h\"
 
   packs:
-    - pack: AlifSemiconductor::Ensemble
-    - pack: ARM::CMSIS@6.1.0
-    - pack: ARM::CMSIS-Compiler@2.1.0
-    - pack: ARM::CMSIS-Driver@2.8.0
-    - pack: Keil::Ensemble_DevKit-E7_BSP
+    - pack: AlifSemiconductor::Ensemble@^2.0.0-0
+    - pack: ARM::CMSIS@^6.0.0
+    - pack: ARM::CMSIS-Compiler@^2.1.0
+    - pack: ARM::CMSIS-Driver@^2.8.0
+    - pack: Keil::Ensemble_DevKit-E7_BSP@^1.0.0-0
 
   add-path:
     - ./ConductorTool
