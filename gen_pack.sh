@@ -32,6 +32,7 @@ PACK_DIRS="
   CMSIS
   examples
   layers
+  setools
 "
 
 # Specify file names to be added to pack base directory
