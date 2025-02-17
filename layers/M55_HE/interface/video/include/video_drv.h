@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Arm Limited. All rights reserved.
+ * Copyright (c) 2024 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -51,6 +51,7 @@ extern "C"
 #define VIDEO_DRV_EVENT_OVERFLOW        (1UL << 1)  ///< Video buffer overflow
 #define VIDEO_DRV_EVENT_UNDERFLOW       (1UL << 2)  ///< Video buffer underflow
 #define VIDEO_DRV_EVENT_EOS             (1UL << 3)  ///< Video end of stream
+#define VIDEO_DRV_EVENT_ERROR           (1UL << 4)  ///< Video error
 
 /* Return code */
 #define VIDEO_DRV_OK                    (0)         ///< Operation succeeded
