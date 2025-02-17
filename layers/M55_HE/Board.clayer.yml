@@ -55,35 +55,34 @@ layer:
         - '--diag_suppress 6312,6314,6329,6848'
 
   components:
-    - component: AlifSemiconductor::BSP:External peripherals:Ethernet PHY
+    - component: BSP:External peripherals:Ethernet PHY
 
-    - component: AlifSemiconductor::CMSIS Driver:Ethernet MAC
-    - component: AlifSemiconductor::CMSIS Driver:GPIO
-    - component: AlifSemiconductor::CMSIS Driver:SAI
-    - component: AlifSemiconductor::CMSIS Driver:USART
+    - component: CMSIS Driver:Ethernet MAC
+    - component: CMSIS Driver:GPIO
+    - component: CMSIS Driver:SAI
+    - component: CMSIS Driver:USART
 
-    - component: AlifSemiconductor::Device:Conductor Tool support
-    - component: AlifSemiconductor::Device:Startup&C Startup
+    - component: Device:Conductor Tool support
+    - component: Device:Startup&C Startup
 
-    - component: AlifSemiconductor::Device:Retarget IO:STDERR
-    - component: AlifSemiconductor::Device:Retarget IO:STDIN
-    - component: AlifSemiconductor::Device:Retarget IO:STDOUT
+    - component: Device:Retarget IO:STDERR
+    - component: Device:Retarget IO:STDIN
+    - component: Device:Retarget IO:STDOUT
 
-    - component: AlifSemiconductor::Device:SOC Peripherals:DMA
-    - component: AlifSemiconductor::Device:SOC Peripherals:PINCONF
+    - component: Device:SOC Peripherals:DMA
+    - component: Device:SOC Peripherals:PINCONF
 
-    - component: ARM::CMSIS:CORE
+    - component: CMSIS:CORE
 
     - component: CMSIS Driver:Ethernet PHY:Custom
     - component: CMSIS Driver:VIO:Board&DevKit-E7
 
-    - component: ARM::CMSIS-Compiler:CORE
-    - component: ARM::CMSIS-Compiler:STDERR:Custom
-    - component: ARM::CMSIS-Compiler:STDIN:Custom
-    - component: ARM::CMSIS-Compiler:STDOUT:Custom
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Custom
+    - component: CMSIS-Compiler:STDIN:Custom
+    - component: CMSIS-Compiler:STDOUT:Custom
 
-    - component: Arm::Machine Learning:NPU Support:Ethos-U Driver&Generic U55
-    - component: tensorflow::Machine Learning:TensorFlow:Kernel&Ethos-U
+    - component: Machine Learning:NPU Support:Ethos-U Driver&Generic U55
 
   groups:
     - group: Board
