@@ -1,5 +1,5 @@
 /*---------------------------------------------------------------------------
- * Copyright (c) 2024 Arm Limited (or its affiliates). All rights reserved.
+ * Copyright (c) 2024-2025 Arm Limited (or its affiliates). All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -24,6 +24,7 @@
 #endif
 
 #include "conductor_board_config.h"
+#include "ethosu_driver.h"
 #include "main.h"
 
 #ifdef CMSIS_shield_header
@@ -31,6 +32,40 @@ __WEAK int32_t shield_setup (void) {
   return 0;
 }
 #endif
+
+static struct ethosu_driver EthosDriver;
+
+void NPU_HE_IRQHandler(void) {
+  ethosu_irq_handler(&EthosDriver);
+}
+
+int32_t NpuInit(void) {
+  void *const ethos_base_addr = (void *)LOCAL_NPU_BASE;
+
+  /*  Initialize Ethos-U NPU driver. */
+  if (ethosu_init(&EthosDriver,    /* Ethos-U device driver */
+                  ethos_base_addr, /* Ethos-U base address  */
+                  0,               /* Cache memory pointer  */
+                  0,               /* Cache memory size     */
+                  1,               /* Secure enable         */
+                  1)               /* Privileged mode       */
+      ) {
+    /* Failed to initialize Arm Ethos-U driver */
+    return 1;
+  }
+
+  NVIC_EnableIRQ(LOCAL_NPU_IRQ_IRQn);
+
+  return 0;
+}
+
+static void CpuCacheEnable(void) {
+  /* Enable I-Cache */
+  SCB_EnableICache();
+
+  /* Enable D-Cache */
+  SCB_EnableDCache();
+}
 
 int main (void) {
 
@@ -43,9 +78,15 @@ int main (void) {
   /* Initialize Virtual I/O */
   vioInit();
 
+  /* Initialize Ethos NPU */
+  NpuInit();
+
 #ifdef CMSIS_shield_header
   shield_setup();
 #endif
+
+  /* Enable the CPU Cache */
+  CpuCacheEnable();
 
   return (app_main());
 }
