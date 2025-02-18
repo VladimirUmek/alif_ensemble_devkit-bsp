@@ -51,21 +51,6 @@ static void Driver_SAI_Callback (uint32_t event) {
     /* Trigger new receive */
     AudioCb.drv->Receive(&AudioCb.rx_buf.data[buf_index], AudioCb.rx_buf.block_size/2);
 
-#if 0
-    /* Trigger new receive if number of received blocks is less than number of data blocks */
-    if (AudioCb.rx_cnt < AudioCb.rx_buf.block_num) {
-      /* Determine current buffer index */
-      buf_idx = AudioCb.rx_cnt * AudioCb.rx_buf.block_size;
-      /* Start new SAI receive */
-      AudioCb.drv->Receive(&AudioCb.rx_buf.data[buf_idx], AudioCb.rx_buf.block_size/2);
-    }
-    else {
-      /* Disable SAI receiver */
-      AudioCb.drv->Control(ARM_SAI_CONTROL_RX, 0U, 0U);
-      /* Update status */
-      AudioCb.status.rx_active = 0U;
-    }
-#endif
     /* Call application callback function */
     if (AudioCb.callback != NULL) {
       AudioCb.callback(AUDIO_DRV_EVENT_RX_DATA);
@@ -75,19 +60,14 @@ static void Driver_SAI_Callback (uint32_t event) {
     /* Increment transmitter block count */
     AudioCb.tx_cnt++;
 
-    /* Trigger new transmit if number of transmitted blocks is less than number of data blocks */
-    if (AudioCb.tx_cnt < AudioCb.tx_buf.block_num) {
-      /* Determine current buffer index */
-      buf_index = AudioCb.tx_cnt * AudioCb.tx_buf.block_size;
-      /* Start new SAI transmit */
-      AudioCb.drv->Send(&AudioCb.tx_buf.data[buf_index], AudioCb.tx_buf.block_size/2);
-    }
-    else {
-      /* Disable SAI transmitter */
-      AudioCb.drv->Control(ARM_SAI_CONTROL_TX, 0U, 0U);
-      /* Update status */
-      AudioCb.status.tx_active = 0U;
-    }
+    /* Determine current transmit buffer block */
+    buf_block = AudioCb.tx_cnt % AudioCb.tx_buf.block_num;
+
+    /* Determine current buffer index */
+    buf_index = AudioCb.tx_cnt * AudioCb.tx_buf.block_size;
+
+    /* Trigger new transmit */
+    AudioCb.drv->Send(&AudioCb.tx_buf.data[buf_index], AudioCb.tx_buf.block_size/2);
 
     /* Call application callback function */
     if (AudioCb.callback != NULL) {

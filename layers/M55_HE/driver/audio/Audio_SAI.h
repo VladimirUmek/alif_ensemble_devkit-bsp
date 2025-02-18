@@ -27,12 +27,6 @@
 /* Definitions */
 #define AUDIO_FLAGS_INIT      (1U << 0)
 
-#if (defined(__ICCARM__))
-  #define OBJECT_IN_SECTION(object_arg, section_arg) object_arg @section_arg
-#else
-  #define OBJECT_IN_SECTION(object_arg, section_arg) __attribute__((section(section_arg))) object_arg
-#endif
-
 typedef struct audio_buf_s {
   void    *data;              /* Data buffer pointer     */
   uint32_t block_num;         /* Number of data blocks   */
