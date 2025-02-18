@@ -23,6 +23,8 @@ layer:
         - STDOUT
         - STDERR
         - Heap: 65536
+      consumes:
+        - CMSIS-RTOS2
 
   define:
     - CMSIS_target_header: \"DevKit-E7.h\"
@@ -99,10 +101,7 @@ layer:
 
     - group: Driver
       files:
-        - file: ./interface/sensor/source/sensor_drv.c
         - file: ./driver/audio/Audio_SAI.c
-        - file: ./driver/sensor/sensor_config.h
-        - file: ./driver/sensor/sensor_drv_hw.c
         - file: ./driver/video/video_drv.c
 
     - group: Interface
