@@ -49,7 +49,6 @@ layer:
   add-path:
     - ./ConductorTool
     - ./interface/audio/include
-    - ./interface/sensor/include
     - ./interface/video/include
 
   misc:
