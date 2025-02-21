@@ -57,7 +57,8 @@
   </components>
 
   <csolution>
-    <clayer type="Board" path="layers/M55_HE" file="Board.clayer.yml" copy-to="Board/DevKit-E7" condition="DevKit-E7"/>
+    <clayer type="Board" path="layers/M55_HE" file="Board.clayer.yml" copy-to="Board/DevKit-E7_M55_HE" condition="DevKit-E7"/>
+    <clayer type="Board" path="layers/M55_HP" file="Board.clayer.yml" copy-to="Board/DevKit-E7_M55_HP" condition="DevKit-E7"/>
   </csolution>
 
   <examples>
