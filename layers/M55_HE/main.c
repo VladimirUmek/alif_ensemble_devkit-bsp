@@ -26,10 +26,6 @@
 #include "conductor_board_config.h"
 #include "ethosu_driver.h"
 #include "main.h"
-#include "power.h"
-
-#include "se_services_port.h"
-
 
 #ifdef CMSIS_shield_header
 __WEAK int32_t shield_setup (void) {
@@ -63,22 +59,6 @@ int32_t NpuInit(void) {
   return 0;
 }
 
-void clock_init(void) {
-  uint32_t service_error_code = 0;
-  /* Enable Clocks */
-  uint32_t error_code = SERVICES_clocks_enable_clock(se_services_s_handle, CLKEN_CLK_100M, true, &service_error_code);
-  if(error_code || service_error_code) {
-    // printf("SE: 100MHz clock enable error_code=%u se_error_code=%u\n", error_code, service_error_code);
-    return;
-  }
-
-  error_code = SERVICES_clocks_enable_clock(se_services_s_handle, CLKEN_HFOSC, true, &service_error_code);
-  if(error_code || service_error_code) {
-    // printf("SE: HFOSC enable error_code=%u se_error_code=%u\n", error_code, service_error_code);
-    return;
-  }
-}
-
 static void CpuCacheEnable(void) {
   /* Enable I-Cache */
   SCB_EnableICache();
@@ -91,13 +71,6 @@ int main (void) {
 
   /* Apply pin configuration */
   conductor_pins_config();
-
-  se_services_port_init();
-
-  enable_mipi_dphy_power();
-  disable_mipi_dphy_isolation();
-
-  clock_init();
 
   /* Initialize STDIO */
   stdio_init();
