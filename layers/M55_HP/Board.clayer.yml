@@ -100,7 +100,7 @@ layer:
 
     - group: Driver
       files:
-        - file: ./driver/audio/Audio_SAI.c
+        - file: ./driver/audio/audio_drv.c
 
     - group: Interface
       files:

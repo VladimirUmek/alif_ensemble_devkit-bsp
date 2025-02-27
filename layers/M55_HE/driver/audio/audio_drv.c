@@ -16,16 +16,43 @@
  * limitations under the License.
  *---------------------------------------------------------------------------*/
 
+ #include <stddef.h>
 #include <string.h>
-#include "Audio_SAI.h"
+#include "audio_drv.h"
 #include "Driver_SAI.h"
+
+#ifdef _RTE_
+#include "RTE_Components.h"
+#endif
+#include CMSIS_device_header
+#include CMSIS_target_header
 
 /* Configuration */
 #define AUDIO_CFG_SAI_MODE      ARM_SAI_MODE_MASTER
 #define AUDIO_CFG_SAI_SYNC      ARM_SAI_ASYNCHRONOUS
 #define AUDIO_CFG_SAI_PROTOCOL  ARM_SAI_PROTOCOL_I2S
 
-#define AUDIO_SAI_INSTANCE      CMSIS_DRIVER_SAI
+#define AUDIO_CFG_SAI_INSTANCE  CMSIS_DRIVER_SAI
+
+/* Definitions */
+#define AUDIO_FLAGS_INIT      (1U << 0)
+
+typedef struct audio_buf_s {
+  void    *data;              /* Data buffer pointer     */
+  uint32_t block_num;         /* Number of data blocks   */
+  uint32_t block_size;        /* Data block size         */
+} AudioBuf_t;
+
+typedef struct audio_cb_s {
+  ARM_DRIVER_SAI *drv;        /* SAI driver instance     */
+  AudioDrv_Event_t  callback; /* Audio driver callback   */
+  AudioDrv_Status_t status;   /* Audio driver status     */
+  AudioBuf_t tx_buf;          /* Transmit buffer info    */
+  AudioBuf_t rx_buf;          /* Receive buffer info     */
+  uint32_t   rx_cnt;          /* Receiver block count    */
+  uint32_t   tx_cnt;          /* Transmitter block count */
+  uint8_t    flags;           /* Audio driver flags      */
+} AudioCb_t;
 
 /* Driver Control Block */
 static AudioCb_t AudioCb;
@@ -89,7 +116,7 @@ int32_t AudioDrv_Initialize (AudioDrv_Event_t cb_event) {
   AudioCb.flags    = 0U;
 
   /* Initialize SAI */
-  AudioCb.drv = &ARM_Driver_SAI_(AUDIO_SAI_INSTANCE);
+  AudioCb.drv = &ARM_Driver_SAI_(AUDIO_CFG_SAI_INSTANCE);
 
   if (AudioCb.drv->Initialize(Driver_SAI_Callback) != ARM_DRIVER_OK) {
     status = AUDIO_DRV_ERROR;
