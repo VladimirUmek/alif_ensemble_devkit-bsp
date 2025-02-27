@@ -1,6 +1,6 @@
 # Board: AlifSemiconductor DevKit
 
-## Default Board Layer
+## Board Layer for M55 High Efficiency Core
 
 Device: AE722F80F55D5LS:M55_HE
 
@@ -12,11 +12,17 @@ Refer to ["Alif Conductor Tool Manual"](https://conductor.alifsemi.com/Alif_HTML
 | System Component        | Setting
 |:------------------------|:----------------------------------------
 | Heap                    | 96 kB (configured in M55_HE linker file)
-| Stack (MSP)             | 2 kB (configured in M55_HE linker file)
+| Stack (MSP)             | 8 kB (configured in M55_HE linker file)
 
 ### STDIO mapping
 
 **STDIO** is routed to Virtual COM port via **UART4** peripheral
+
+### Virtual Streaming Interfaces
+
+| Interface | Peripheral | Board connector/component | Connection
+|:----------|:-----------|:--------------------------|:-----------
+| Audio     | SAI3       | I2S Microphone (U13, U14) | AVH_AUDIO
 
 ### CMSIS-Driver mapping
 
